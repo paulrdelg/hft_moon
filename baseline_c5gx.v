@@ -78,14 +78,12 @@ module baseline_c5gx(
 `ifdef ENABLE_GPIO
       ///////// GPIO ///////// 3.3-V LVTTL ///////
       inout       [35:0] GPIO,
-`else	
+`else
       ///////// HEX2 ///////// 1.2 V ///////
       output      [6:0]  HEX2,
 
       ///////// HEX3 ///////// 1.2 V ///////
-      output      [6:0]  HEX3,		
-		
-		
+      output      [6:0]  HEX3,
 `endif /*ENABLE_GPIO*/
 
       ///////// HDMI /////////
@@ -111,10 +109,10 @@ module baseline_c5gx(
       output      [2:1]  HSMC_CLKOUT_n,
       output      [2:1]  HSMC_CLKOUT_p,
       inout       [3:0]  HSMC_D,
-`ifdef ENABLE_HSMC_XCVR		
+`ifdef ENABLE_HSMC_XCVR
       input       [3:0]  HSMC_GXB_RX_p, /// 1.5-V PCML
       output      [3:0]  HSMC_GXB_TX_p, /// 1.5-V PCML
-`endif /*ENABLE_HSMC_XCVR*/		
+`endif /*ENABLE_HSMC_XCVR*/
       inout       [16:0] HSMC_RX_n,
       inout       [16:0] HSMC_RX_p,
       inout       [16:0] HSMC_TX_n,
@@ -168,6 +166,24 @@ module baseline_c5gx(
       output             UART_TX
 
 
+);
+
+wire clk;
+wire rst;
+
+udled_interface(
+      .clk(clk),
+      .rst(rst),
+      .LEDR(LEDR),
+      .LEDG(LEDG)
+);
+
+sd_card_init (
+    .clk(clk),             // System clock
+    .rst(rst),             // Reset signal
+    .sd_clk(SD_CLK),          // SD card clock output
+    .sd_cmd(SD_CMD),          // SD card command output
+    .sd_dat(SD_DAT)     // SD card data lines (4-bit bus)
 );
 
 endmodule
