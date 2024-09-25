@@ -2,8 +2,8 @@
 module udled_interface(
     input  wire clk,             // System clock
     input  wire rst,             // Reset signal
-    output reg [9:0] LEDG,
-    output reg [9:0] LEDR
+    output wire [9:0] LEDG,
+    output wire [9:0] LEDR
 );
 
 reg [15:0] ledr_d;
@@ -30,7 +30,7 @@ always @(*) begin
   ledg_d <= ledg_q;
 end
 
-LEDR <= ledr_q;
-LEDG <= ledg_q;
+assign LEDR = ledr_q;
+assign LEDG = ledg_q;
 
 endmodule

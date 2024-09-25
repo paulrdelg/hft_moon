@@ -1,11 +1,11 @@
 
 module hex_interface (
-    input  wire clk,             // System clock
-    input  wire rst,             // Reset signal
-    output reg [6:0] HEX0,
-    output reg [6:0] HEX1,
-    output reg [6:0] HEX2,
-    output reg [6:0] HEX3
+    input  wire clk,
+    input  wire rst,
+    output wire [6:0] HEX0,
+    output wire [6:0] HEX1,
+    output wire [6:0] HEX2,
+    output wire [6:0] HEX3
 );
 
 reg [6:0] hex0_d;
@@ -19,7 +19,6 @@ reg [6:0] hex2_q;
 
 reg [6:0] hex3_d;
 reg [6:0] hex3_q;
-
 
 // Sequential Logic - Clocked Process
 always @(posedge clk or posedge rst) begin
@@ -38,15 +37,15 @@ end
 
 // Combinational Logic - Next State Logic
 always @(*) begin
-  hex0_d <= hex0_q;
-  hex1_d <= hex1_q;
-  hex2_d <= hex2_q;
-  hex3_d <= hex3_q;
+  hex0_d = hex0_q;
+  hex1_d = hex1_q;
+  hex2_d = hex2_q;
+  hex3_d = hex3_q;
 end
 
-HEX0 <= hex0_q;
-HEX1 <= hex1_q;
-HEX2 <= hex2_q;
-HEX3 <= hex3_q;
+assign HEX0 = hex0_q;
+assign HEX1 = hex1_q;
+assign HEX2 = hex2_q;
+assign HEX3 = hex3_q;
 
 endmodule

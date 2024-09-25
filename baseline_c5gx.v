@@ -178,7 +178,7 @@ udled_interface(
       .LEDG(LEDG)
 );
 
-sd_card_init (
+sd_interface (
     .clk(clk),             // System clock
     .rst(rst),             // Reset signal
     .sd_clk(SD_CLK),          // SD card clock output
