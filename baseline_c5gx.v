@@ -186,4 +186,15 @@ sd_card_init (
     .sd_dat(SD_DAT)     // SD card data lines (4-bit bus)
 );
 
+
+hex_interface (
+    .clk(clk),             // System clock
+    .rst(rst),             // Reset signal
+    .HEX0(HEX0),
+    .HEX1(HEX1),
+    .HEX2(HEX2),
+    .HEX3(HEX3)
+);
+
+
 endmodule
